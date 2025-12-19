@@ -1,0 +1,25 @@
+diff_cont:
+  type: diff_drive_controller/DiffDriveController
+  publish_rate: 50
+  left_wheel: ['left_wheel_joint']
+  right_wheel: ['right_wheel_joint']
+  wheel_separation: 0.297   # 2 x wheel_offset_y trong robot_core.xacro
+  wheel_radius: 0.033       # wheel_radius trong robot_core.xacro
+  # encoder config: chỉnh lại nếu cần
+  # Nếu dùng ticks_per_meter:
+  #   ticks_per_meter: <tính theo encoder thực tế>
+  # Nếu dùng gear ratio, encoder resolution:
+  #   encoder_resolution: <số ticks mỗi vòng>
+  #   gear_ratio: <tỉ số truyền động>
+  #   (hoặc dùng ticks_per_meter trực tiếp)
+  enable_odom_tf: true
+  pose_covariance_diagonal: [0.01, 0.01, 0.01, 0.0, 0.0, 0.05]
+  twist_covariance_diagonal: [0.01, 0.01, 0.01, 0.0, 0.0, 0.05]
+  cmd_vel_timeout: 0.25
+  use_stamped_vel: false
+  base_frame_id: base_footprint
+  odom_frame_id: odom
+  publish_limited_velocity: true
+  publish_wheel_data: true
+  # Nếu chỉ có 2 encoder, đảm bảo đúng joint trái-phải
+  # Nếu 4 bánh, chỉ cần 2 encoder đối xứng trái-phải là đủ cho odom chuẩn
